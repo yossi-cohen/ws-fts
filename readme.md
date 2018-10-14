@@ -13,6 +13,7 @@ env/bin/pip install [package-name]
 flask
 requests
 elasticsearch
+elasticsearch_dsl
 
 ## delete index
 

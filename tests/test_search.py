@@ -13,20 +13,21 @@ def main():
     # es_rest.index(uri_index, {"content": "The quick brown fox"})
 
     uri_search = 'http://localhost:9200/test/docs/_search'
-    results = es_rest.search(uri_search, 'fox')
-    format_results(results)
+    res = es_rest.search(uri_search, 'fox')
+    format_results(res)
 
 
-def format_results(results):
+def format_results(res):
     """Print results nicely:
     doc_id) content
     """
 
-    if ('error' in results):
-        print('ERROR: {}'.format(results['error']['reason']))
+    if ('error' in res):
+        print('ERROR: {}'.format(res['error']['reason']))
         return
 
-    data = [doc for doc in results['hits']['hits']]
+    print("%d documents found:" % res['hits']['total'])
+    data = [doc for doc in res['hits']['hits']]
     for doc in data:
         print("%s) %s" % (doc['_id'], doc['_source']['content']))
 
