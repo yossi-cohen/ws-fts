@@ -3,12 +3,17 @@
 import sys
 sys.path.append('.')
 
-from search import search
+from es_rest import ES_rest
 
 
 def main():
-    uri = 'http://localhost:9200/test/docs/_search'
-    results = search(uri, 'fox')
+    es_rest = ES_rest()
+
+    # uri_index = 'http://localhost:9200/test/docs/'
+    # es_rest.index(uri_index, {"content": "The quick brown fox"})
+
+    uri_search = 'http://localhost:9200/test/docs/_search'
+    results = es_rest.search(uri_search, 'fox')
     format_results(results)
 
 
